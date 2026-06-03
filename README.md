@@ -21,7 +21,7 @@ This tool provides the following features:
 The target is to give you enough information to do an initial target region analysis on both feature mismatch
 and cost differences in minutes.
 
-**Please, note that this is still a work in progress, review the output of this tool in detail and critically 
+**Please, note that this is a sample implementation, review the output of this tool in detail and critically 
 as the code in this repo is not production ready.**
 
 - [Introduction](#introduction)
