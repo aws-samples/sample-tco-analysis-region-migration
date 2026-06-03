@@ -1,0 +1,8 @@
+boto3>=1.42.83
+numpy>=2.4.4
+pandas>=3.0.2
+xlsxwriter>=3.2.9
+python-calamine>=0.6.2
+httpx[http2]>=0.28.1
+defusedxml>=0.7.1
+boto3-stubs-lite[essential]>=1.42.83
