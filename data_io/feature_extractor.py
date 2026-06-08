@@ -10,15 +10,12 @@ def extract_sku_annotations(excel_path: Path, region_code: str,
     """
     Extract SKU annotations from an Excel report and update CSV files.
 
-    Annotations let users link unavailable SKUs to components or services in
-    their own applications (e.g. "logging component in App-X").
-
     Parameters
     ----------
     excel_path : Path
         Path to the Excel report file
     region_code : str
-        AWS region code (e.g., 'eu-south-2')
+        AWS region code to be used for normalizing Usage Types (e.g., 'eu-south-2')
     output_dir : Path
         Base directory for SKU annotations (default: 'data/sku_annotations')
     exclude_services : set[str]
@@ -28,8 +25,7 @@ def extract_sku_annotations(excel_path: Path, region_code: str,
     sheet_names = [n for n in xl.sheet_names if 'unav' in n]
     svc_names = {n.split(' ')[0]: n for n in sheet_names}
 
-    region_output_dir = output_dir / region_code
-    region_output_dir.mkdir(parents=True, exist_ok=True)
+    output_dir.mkdir(parents=True, exist_ok=True)
 
     cols = ['normalizedUsageType', 'operation', 'normalizedRateCode', 'Annotation']
 
@@ -38,7 +34,7 @@ def extract_sku_annotations(excel_path: Path, region_code: str,
             continue
 
         logging.info(f'Processing {svc}...')
-        output_csv = region_output_dir / f'{svc}.csv'
+        output_csv = output_dir / f'{svc}.csv'
         df = pd.read_excel(xl, sheet_name=svc_names[svc], engine='calamine')
 
         df['normalizedUsageType'] = df['usageType'].apply(lambda x: normalize_usage_types(x, region_code))
