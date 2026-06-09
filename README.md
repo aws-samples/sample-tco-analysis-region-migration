@@ -172,7 +172,8 @@ python main.py analyze eu-west-1 eusc-de-east-1 output_report.xlsx --cur-data=cu
 ```
 
 Note that EUSC pricing is retrieved in EUR rather than USD. The tool will retrieve the 
-exchange rate automatically if needed.
+exchange rate automatically if needed, but please beware that the tool's conversion rate is only
+considered for comparison purposes.
 
 # Interpreting the results
 
